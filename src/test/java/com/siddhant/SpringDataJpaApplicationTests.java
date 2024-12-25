@@ -1,4 +1,4 @@
-package com.siddhant.spring_data_jpa;
+package com.siddhant;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
