@@ -23,7 +23,7 @@ public class SpringDataJpaApplication {
 
 	/**
 	 * Spring runs CommandLineRunner bean when Spring Boot App starts
-	 * command: .\mvnw.cmd spring-boot:run
+	 * command: .\mvnw spring-boot:run
 	 * db records added through this command is reverted automatically.
 	 */
 	@Bean
@@ -50,10 +50,12 @@ public class SpringDataJpaApplication {
 
 			Long authorId = author.getId();
 
-			// get author by id
-			Author author1 = authorRepository.getReferenceById(authorId);
-			log.info("saved author: " + author1);
-
+			// get author by id calling db using findById()
+			Optional<Author> author1 = authorRepository.findById(authorId);
+			author1.ifPresent(auth-> {
+				log.info("found author:{}", auth);
+			});
+			log.info("-------------------------------------");
 
 			// find books by author-id
 			log.info("find book by author_id {}", authorId);
@@ -80,7 +82,7 @@ public class SpringDataJpaApplication {
 			// check if orphan-removal works or not.
 			log.info("size of books now:{}", bookRepository.count());
 
-			authorRepository.delete(author);
+			authorRepository.deleteById(authorId);
 
 			// check if author exists in db.
 			Optional<Author> optionalAuthor = authorRepository.findById(authorId);
