@@ -1,9 +1,9 @@
 package com.siddhant;
 
-import com.siddhant.association.cascade.Author;
-import com.siddhant.association.cascade.AuthorRepository;
-import com.siddhant.association.cascade.Book;
-import com.siddhant.association.cascade.BookRepository;
+import com.siddhant.association.Author;
+import com.siddhant.association.AuthorRepository;
+import com.siddhant.association.Book;
+import com.siddhant.association.BookRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -22,6 +22,8 @@ public class SpringDataJpaApplication {
 	}
 
 	/**
+	 * This bean is created for testing purpose & on test environment only.
+	 * We can visualize data using below command :
 	 * Spring runs CommandLineRunner bean when Spring Boot App starts
 	 * command: .\mvnw spring-boot:run
 	 * db records added through this command is reverted automatically.

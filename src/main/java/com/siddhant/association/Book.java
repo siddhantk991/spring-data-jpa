@@ -1,4 +1,4 @@
-package com.siddhant.association.cascade;
+package com.siddhant.association;
 
 import jakarta.persistence.*;
 import lombok.*;

@@ -1,4 +1,4 @@
-package com.siddhant.association.cascade;
+package com.siddhant.association;
 
 import jakarta.annotation.PostConstruct;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class CascadeTest {
+public class AssocationTest {
 
     @Autowired
     private BookRepository customerRepo;

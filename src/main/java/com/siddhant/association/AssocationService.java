@@ -1,11 +1,11 @@
-package com.siddhant.association.cascade;
+package com.siddhant.association;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CascadeService {
+public class AssocationService {
     @Autowired
     private BookRepository bookRepository;
     @Autowired
@@ -29,5 +29,11 @@ public class CascadeService {
     @Transactional
     public void deleteAuthor(Author author) {
         authorRepository.delete(author);
+    }
+
+    @Transactional
+    public void deleteViaIdentifiers(Long authorId) {
+        bookRepository.deleteByAuthorIdentifier(authorId);
+        authorRepository.deleteByIdentifier(authorId);
     }
 }
