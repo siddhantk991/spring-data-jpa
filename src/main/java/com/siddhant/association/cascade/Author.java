@@ -1,7 +1,9 @@
 package com.siddhant.association.cascade;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -10,7 +12,9 @@ import java.util.Iterator;
 import java.util.List;
 
 @Entity
-@Data
+@EqualsAndHashCode(callSuper=false)
+@Getter
+@Setter
 public class Author implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -18,7 +22,6 @@ public class Author implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String genre;
     private int age;
     @OneToMany(cascade = CascadeType.ALL,
             mappedBy = "author", orphanRemoval = true)
@@ -38,5 +41,10 @@ public class Author implements Serializable {
             book.setAuthor(null);
             iterator.remove();
         }
+    }
+    @Override
+    public String toString() {
+        return "Author{" + "id=" + id + ", name=" + name
+                + ", age=" + age + '}';
     }
 }

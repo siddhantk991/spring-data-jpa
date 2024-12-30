@@ -41,7 +41,9 @@ public class CascadeTest {
     void init() {
         author = new Author();
         Book book1 = new Book();
+        book1.setTitle("Java");
         Book book2 = new Book();
+        book2.setTitle("Spring");
         List<Book> books = new ArrayList<>();
         books.add(book1);
         books.add(book2);
