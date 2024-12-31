@@ -1,11 +1,15 @@
 package com.siddhant.association;
 
 import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-public class AssocationService {
+public class AssociationService {
     @Autowired
     private BookRepository bookRepository;
     @Autowired
@@ -17,8 +21,8 @@ public class AssocationService {
     }
 
     @Transactional
-    public void saveAuthor(Author author) {
-        authorRepository.save(author);
+    public Author saveAuthor(Author author) {
+        return authorRepository.save(author);
     }
 
     @Transactional
@@ -35,5 +39,19 @@ public class AssocationService {
     public void deleteViaIdentifiers(Long authorId) {
         bookRepository.deleteByAuthorIdentifier(authorId);
         authorRepository.deleteByIdentifier(authorId);
+    }
+
+    @Transactional
+    public void deleteViaBulkIn(int authorAge) {
+        List<Author> authors = authorRepository.findByAge(authorAge);
+        bookRepository.deleteBulkByAuthors(authors);
+        authorRepository.deleteAllInBatch(authors);
+    }
+    // delete in batch for one author and its associated books.
+    @Transactional
+    public void deleteViaDeleteInBatch(Long authorId) {
+        Author author = authorRepository.getReferenceById(authorId);
+        bookRepository.deleteAllInBatch(author.getBooks());
+        authorRepository.deleteAllInBatch(List.of(author));
     }
 }

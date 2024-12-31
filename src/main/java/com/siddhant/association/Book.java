@@ -10,8 +10,6 @@ import java.io.Serializable;
 @Getter
 @Setter
 @EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
 public class Book implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -19,6 +17,7 @@ public class Book implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
+    @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
     private Author author;
@@ -27,4 +26,5 @@ public class Book implements Serializable {
     public String toString() {
         return "Book{" + "id=" + id + ", title=" + title+'}';
     }
+
 }

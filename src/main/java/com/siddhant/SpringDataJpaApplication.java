@@ -28,7 +28,7 @@ public class SpringDataJpaApplication {
 	 * command: .\mvnw spring-boot:run
 	 * db records added through this command is reverted automatically.
 	 */
-	@Bean
+/**	@Bean
 	public CommandLineRunner demo(BookRepository bookRepository, AuthorRepository authorRepository) {
 		return (args) -> {
 
@@ -98,6 +98,6 @@ public class SpringDataJpaApplication {
 			log.info("\n");
 
 		};
-	}
+	} */
 
 }
